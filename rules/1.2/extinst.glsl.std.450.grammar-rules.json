@@ -1,0 +1,697 @@
+{
+  "source_grammar": "extinst.glsl.std.450.grammar.json",
+  "rule_types": {
+    "type_constrain": "The operand must be within the set of types as defined in 2.2.2.",
+    "base_type": "Constraints the base type of this operand to be in this set of types",
+    "result_equal_type": "Signals that an operand needs to have the same type as the result of that instruction"
+  },
+  "instructions": [
+    {
+      "opname": "Round",
+      "opcode": 1,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "RoundEven",
+      "opcode": 2,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Trunc",
+      "opcode": 3,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "FAbs",
+      "opcode": 4,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "SAbs",
+      "opcode": 5,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "FSign",
+      "opcode": 6,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "SSign",
+      "opcode": 7,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Floor",
+      "opcode": 8,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Ceil",
+      "opcode": 9,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Fract",
+      "opcode": 10,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Radians",
+      "opcode": 11,
+      "operand_mapping": [
+        "degrees"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Degrees",
+      "opcode": 12,
+      "operand_mapping": [
+        "radians"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Sin",
+      "opcode": 13,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Cos",
+      "opcode": 14,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Tan",
+      "opcode": 15,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Asin",
+      "opcode": 16,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Acos",
+      "opcode": 17,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Atan",
+      "opcode": 18,
+      "operand_mapping": [
+        "y_over_x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Sinh",
+      "opcode": 19,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Cosh",
+      "opcode": 20,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Tanh",
+      "opcode": 21,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Asinh",
+      "opcode": 22,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Acosh",
+      "opcode": 23,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Atanh",
+      "opcode": 24,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Atan2",
+      "opcode": 25,
+      "operand_mapping": [
+        "y",
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Pow",
+      "opcode": 26,
+      "operand_mapping": [
+        "x",
+        "y"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Exp",
+      "opcode": 27,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Log",
+      "opcode": 28,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Exp2",
+      "opcode": 29,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Log2",
+      "opcode": 30,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Sqrt",
+      "opcode": 31,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "InverseSqrt",
+      "opcode": 32,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Determinant",
+      "opcode": 33,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "MatrixInverse",
+      "opcode": 34,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Modf",
+      "opcode": 35,
+      "operand_mapping": [
+        "x",
+        "i"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "ModfStruct",
+      "opcode": 36,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "FMin",
+      "opcode": 37,
+      "operand_mapping": [
+        "x",
+        "y"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "UMin",
+      "opcode": 38,
+      "operand_mapping": [
+        "x",
+        "y"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "SMin",
+      "opcode": 39,
+      "operand_mapping": [
+        "x",
+        "y"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "FMax",
+      "opcode": 40,
+      "operand_mapping": [
+        "x",
+        "y"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "UMax",
+      "opcode": 41,
+      "operand_mapping": [
+        "x",
+        "y"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "SMax",
+      "opcode": 42,
+      "operand_mapping": [
+        "x",
+        "y"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "FClamp",
+      "opcode": 43,
+      "operand_mapping": [
+        "x",
+        "minVal",
+        "maxVal"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "UClamp",
+      "opcode": 44,
+      "operand_mapping": [
+        "x",
+        "minVal",
+        "maxVal"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "SClamp",
+      "opcode": 45,
+      "operand_mapping": [
+        "x",
+        "minVal",
+        "maxVal"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "FMix",
+      "opcode": 46,
+      "operand_mapping": [
+        "x",
+        "y",
+        "a"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "IMix",
+      "opcode": 47,
+      "operand_mapping": [
+        "x",
+        "y",
+        "a"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Step",
+      "opcode": 48,
+      "operand_mapping": [
+        "edge",
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "SmoothStep",
+      "opcode": 49,
+      "operand_mapping": [
+        "edge0",
+        "edge1",
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Fma",
+      "opcode": 50,
+      "operand_mapping": [
+        "a",
+        "b",
+        "c"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Frexp",
+      "opcode": 51,
+      "operand_mapping": [
+        "x",
+        "exp"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "FrexpStruct",
+      "opcode": 52,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Ldexp",
+      "opcode": 53,
+      "operand_mapping": [
+        "x",
+        "exp"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "PackSnorm4x8",
+      "opcode": 54,
+      "operand_mapping": [
+        "v"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "PackUnorm4x8",
+      "opcode": 55,
+      "operand_mapping": [
+        "v"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "PackSnorm2x16",
+      "opcode": 56,
+      "operand_mapping": [
+        "v"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "PackUnorm2x16",
+      "opcode": 57,
+      "operand_mapping": [
+        "v"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "PackHalf2x16",
+      "opcode": 58,
+      "operand_mapping": [
+        "v"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "PackDouble2x32",
+      "opcode": 59,
+      "operand_mapping": [
+        "v"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "UnpackSnorm2x16",
+      "opcode": 60,
+      "operand_mapping": [
+        "p"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "UnpackUnorm2x16",
+      "opcode": 61,
+      "operand_mapping": [
+        "p"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "UnpackHalf2x16",
+      "opcode": 62,
+      "operand_mapping": [
+        "v"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "UnpackSnorm4x8",
+      "opcode": 63,
+      "operand_mapping": [
+        "p"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "UnpackUnorm4x8",
+      "opcode": 64,
+      "operand_mapping": [
+        "p"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "UnpackDouble2x32",
+      "opcode": 65,
+      "operand_mapping": [
+        "v"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Length",
+      "opcode": 66,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Distance",
+      "opcode": 67,
+      "operand_mapping": [
+        "p0",
+        "p1"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Cross",
+      "opcode": 68,
+      "operand_mapping": [
+        "x",
+        "y"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Normalize",
+      "opcode": 69,
+      "operand_mapping": [
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "FaceForward",
+      "opcode": 70,
+      "operand_mapping": [
+        "N",
+        "I",
+        "Nref"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Reflect",
+      "opcode": 71,
+      "operand_mapping": [
+        "I",
+        "N"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "Refract",
+      "opcode": 72,
+      "operand_mapping": [
+        "I",
+        "N",
+        "eta"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "FindILsb",
+      "opcode": 73,
+      "operand_mapping": [
+        "Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "FindSMsb",
+      "opcode": 74,
+      "operand_mapping": [
+        "Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "FindUMsb",
+      "opcode": 75,
+      "operand_mapping": [
+        "Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "InterpolateAtCentroid",
+      "opcode": 76,
+      "operand_mapping": [
+        "interpolant"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "InterpolateAtSample",
+      "opcode": 77,
+      "operand_mapping": [
+        "interpolant",
+        "sample"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "InterpolateAtOffset",
+      "opcode": 78,
+      "operand_mapping": [
+        "interpolant",
+        "offset"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "NMin",
+      "opcode": 79,
+      "operand_mapping": [
+        "x",
+        "y"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "NMax",
+      "opcode": 80,
+      "operand_mapping": [
+        "x",
+        "y"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "NClamp",
+      "opcode": 81,
+      "operand_mapping": [
+        "x",
+        "minVal",
+        "maxVal"
+      ],
+      "rules": []
+    }
+  ]
+}

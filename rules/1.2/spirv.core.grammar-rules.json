@@ -1,45 +1,3569 @@
-
-
 {
-  "source_grammar" : "spirv.core.grammar.json",
-  "rule_types" : {
-    "base_type" : "Describes the base type of some higher order type.",
-    "type_constrain" : "The operand must be within the set of types as defined in 2.2.2.",
-    "result_equal_type" : "Signals that an operand needs to have the same type as the result of that instruction."
+  "source_grammar": "spirv.core.grammar.json",
+  "rule_types": {
+    "type_constrain": "The operand must be within the set of types as defined in 2.2.2.",
+    "base_type": "Constraints the base type of this operand to be in this set of types",
+    "result_equal_type": "Signals that an operand needs to have the same type as the result of that instruction"
   },
-  "instructions" : [
+  "instructions": [
     {
-      "opname" : "FMul",
-      "opcode" : 133,
-      "operand_mapping" : ["result_type", "result", "Operand 1", "Operand 2"],
-      "rules" : [
-        {"result_equal_type" : "Operand 1"},
-        {"result_equal_type" : "Operand 2"},
-        {
-          "base_type" : {
-            "operand" : "Operand 1", 
-            "base_types" : ["FloatingPoint"]
-          }
-        },
-        {
-          "base_type" : {
-            "operand" : "Operand 2", 
-            "base_types" : ["FloatingPoint"]
-          }
-        },
-        {
-          "type_constrain" : {
-            "operand" : "Operand 1",
-            "ty" : ["Scalar", "Vector"]
-          }
-        },
-        {
-          "type_constrain" : {
-            "operand" : "Operand 2",
-            "ty" : ["Scalar", "Vector"]
-          }
-        }
-      ]
+      "opname": "OpNop",
+      "opcode": 0,
+      "operand_mapping": [],
+      "rules": []
+    },
+    {
+      "opname": "OpUndef",
+      "opcode": 1,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSourceContinued",
+      "opcode": 2,
+      "operand_mapping": [
+        "Continued Source"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSource",
+      "opcode": 3,
+      "operand_mapping": [
+        "SourceLanguage_0",
+        "Version",
+        "File",
+        "Source"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSourceExtension",
+      "opcode": 4,
+      "operand_mapping": [
+        "Extension"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpName",
+      "opcode": 5,
+      "operand_mapping": [
+        "Target",
+        "Name"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpMemberName",
+      "opcode": 6,
+      "operand_mapping": [
+        "Type",
+        "Member",
+        "Name"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpString",
+      "opcode": 7,
+      "operand_mapping": [
+        "IdResult_0",
+        "String"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpLine",
+      "opcode": 8,
+      "operand_mapping": [
+        "File",
+        "Line",
+        "Column"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpExtension",
+      "opcode": 10,
+      "operand_mapping": [
+        "Name"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpExtInstImport",
+      "opcode": 11,
+      "operand_mapping": [
+        "IdResult_0",
+        "Name"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpExtInst",
+      "opcode": 12,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Set",
+        "Instruction",
+        "Operand 1, +\\nOperand 2, +\\n..."
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpMemoryModel",
+      "opcode": 14,
+      "operand_mapping": [
+        "AddressingModel_0",
+        "MemoryModel_1"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpEntryPoint",
+      "opcode": 15,
+      "operand_mapping": [
+        "ExecutionModel_0",
+        "Entry Point",
+        "Name",
+        "Interface"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpExecutionMode",
+      "opcode": 16,
+      "operand_mapping": [
+        "Entry Point",
+        "Mode"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpCapability",
+      "opcode": 17,
+      "operand_mapping": [
+        "Capability"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpTypeVoid",
+      "opcode": 19,
+      "operand_mapping": [
+        "IdResult_0"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpTypeBool",
+      "opcode": 20,
+      "operand_mapping": [
+        "IdResult_0"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpTypeInt",
+      "opcode": 21,
+      "operand_mapping": [
+        "IdResult_0",
+        "Width",
+        "Signedness"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpTypeFloat",
+      "opcode": 22,
+      "operand_mapping": [
+        "IdResult_0",
+        "Width"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpTypeVector",
+      "opcode": 23,
+      "operand_mapping": [
+        "IdResult_0",
+        "Component Type",
+        "Component Count"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpTypeMatrix",
+      "opcode": 24,
+      "operand_mapping": [
+        "IdResult_0",
+        "Column Type",
+        "Column Count"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpTypeImage",
+      "opcode": 25,
+      "operand_mapping": [
+        "IdResult_0",
+        "Sampled Type",
+        "Dim_2",
+        "Depth",
+        "Arrayed",
+        "MS",
+        "Sampled",
+        "ImageFormat_7",
+        "AccessQualifier_8"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpTypeSampler",
+      "opcode": 26,
+      "operand_mapping": [
+        "IdResult_0"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpTypeSampledImage",
+      "opcode": 27,
+      "operand_mapping": [
+        "IdResult_0",
+        "Image Type"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpTypeArray",
+      "opcode": 28,
+      "operand_mapping": [
+        "IdResult_0",
+        "Element Type",
+        "Length"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpTypeRuntimeArray",
+      "opcode": 29,
+      "operand_mapping": [
+        "IdResult_0",
+        "Element Type"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpTypeStruct",
+      "opcode": 30,
+      "operand_mapping": [
+        "IdResult_0",
+        "Member 0 type, +\\nmember 1 type, +\\n..."
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpTypeOpaque",
+      "opcode": 31,
+      "operand_mapping": [
+        "IdResult_0",
+        "The name of the opaque type."
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpTypePointer",
+      "opcode": 32,
+      "operand_mapping": [
+        "IdResult_0",
+        "StorageClass_1",
+        "Type"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpTypeFunction",
+      "opcode": 33,
+      "operand_mapping": [
+        "IdResult_0",
+        "Return Type",
+        "Parameter 0 Type, +\\nParameter 1 Type, +\\n..."
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpTypeEvent",
+      "opcode": 34,
+      "operand_mapping": [
+        "IdResult_0"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpTypeDeviceEvent",
+      "opcode": 35,
+      "operand_mapping": [
+        "IdResult_0"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpTypeReserveId",
+      "opcode": 36,
+      "operand_mapping": [
+        "IdResult_0"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpTypeQueue",
+      "opcode": 37,
+      "operand_mapping": [
+        "IdResult_0"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpTypePipe",
+      "opcode": 38,
+      "operand_mapping": [
+        "IdResult_0",
+        "Qualifier"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpTypeForwardPointer",
+      "opcode": 39,
+      "operand_mapping": [
+        "Pointer Type",
+        "StorageClass_1"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpConstantTrue",
+      "opcode": 41,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpConstantFalse",
+      "opcode": 42,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpConstant",
+      "opcode": 43,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpConstantComposite",
+      "opcode": 44,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Constituents"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpConstantSampler",
+      "opcode": 45,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "SamplerAddressingMode_2",
+        "Param",
+        "SamplerFilterMode_4"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpConstantNull",
+      "opcode": 46,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSpecConstantTrue",
+      "opcode": 48,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSpecConstantFalse",
+      "opcode": 49,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSpecConstant",
+      "opcode": 50,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSpecConstantComposite",
+      "opcode": 51,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Constituents"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSpecConstantOp",
+      "opcode": 52,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Opcode"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpFunction",
+      "opcode": 54,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "FunctionControl_2",
+        "Function Type"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpFunctionParameter",
+      "opcode": 55,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpFunctionEnd",
+      "opcode": 56,
+      "operand_mapping": [],
+      "rules": []
+    },
+    {
+      "opname": "OpFunctionCall",
+      "opcode": 57,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Function",
+        "Argument 0, +\\nArgument 1, +\\n..."
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpVariable",
+      "opcode": 59,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "StorageClass_2",
+        "Initializer"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageTexelPointer",
+      "opcode": 60,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Image",
+        "Coordinate",
+        "Sample"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpLoad",
+      "opcode": 61,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pointer",
+        "MemoryAccess_3"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpStore",
+      "opcode": 62,
+      "operand_mapping": [
+        "Pointer",
+        "Object",
+        "MemoryAccess_2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpCopyMemory",
+      "opcode": 63,
+      "operand_mapping": [
+        "Target",
+        "Source",
+        "MemoryAccess_2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpCopyMemorySized",
+      "opcode": 64,
+      "operand_mapping": [
+        "Target",
+        "Source",
+        "Size",
+        "MemoryAccess_3"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpAccessChain",
+      "opcode": 65,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Base",
+        "Indexes"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpInBoundsAccessChain",
+      "opcode": 66,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Base",
+        "Indexes"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpPtrAccessChain",
+      "opcode": 67,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Base",
+        "Element",
+        "Indexes"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpArrayLength",
+      "opcode": 68,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Structure",
+        "Array member"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGenericPtrMemSemantics",
+      "opcode": 69,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pointer"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpInBoundsPtrAccessChain",
+      "opcode": 70,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Base",
+        "Element",
+        "Indexes"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpDecorate",
+      "opcode": 71,
+      "operand_mapping": [
+        "Target",
+        "Decoration_1"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpMemberDecorate",
+      "opcode": 72,
+      "operand_mapping": [
+        "Structure Type",
+        "Member",
+        "Decoration_2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpDecorationGroup",
+      "opcode": 73,
+      "operand_mapping": [
+        "IdResult_0"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGroupDecorate",
+      "opcode": 74,
+      "operand_mapping": [
+        "Decoration Group",
+        "Targets"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGroupMemberDecorate",
+      "opcode": 75,
+      "operand_mapping": [
+        "Decoration Group",
+        "Targets"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpVectorExtractDynamic",
+      "opcode": 77,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Vector",
+        "Index"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpVectorInsertDynamic",
+      "opcode": 78,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Vector",
+        "Component",
+        "Index"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpVectorShuffle",
+      "opcode": 79,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Vector 1",
+        "Vector 2",
+        "Components"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpCompositeConstruct",
+      "opcode": 80,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Constituents"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpCompositeExtract",
+      "opcode": 81,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Composite",
+        "Indexes"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpCompositeInsert",
+      "opcode": 82,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Object",
+        "Composite",
+        "Indexes"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpCopyObject",
+      "opcode": 83,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpTranspose",
+      "opcode": 84,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Matrix"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSampledImage",
+      "opcode": 86,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Image",
+        "Sampler"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageSampleImplicitLod",
+      "opcode": 87,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Sampled Image",
+        "Coordinate",
+        "ImageOperands_4"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageSampleExplicitLod",
+      "opcode": 88,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Sampled Image",
+        "Coordinate",
+        "ImageOperands_4"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageSampleDrefImplicitLod",
+      "opcode": 89,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Sampled Image",
+        "Coordinate",
+        "D~ref~",
+        "ImageOperands_5"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageSampleDrefExplicitLod",
+      "opcode": 90,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Sampled Image",
+        "Coordinate",
+        "D~ref~",
+        "ImageOperands_5"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageSampleProjImplicitLod",
+      "opcode": 91,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Sampled Image",
+        "Coordinate",
+        "ImageOperands_4"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageSampleProjExplicitLod",
+      "opcode": 92,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Sampled Image",
+        "Coordinate",
+        "ImageOperands_4"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageSampleProjDrefImplicitLod",
+      "opcode": 93,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Sampled Image",
+        "Coordinate",
+        "D~ref~",
+        "ImageOperands_5"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageSampleProjDrefExplicitLod",
+      "opcode": 94,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Sampled Image",
+        "Coordinate",
+        "D~ref~",
+        "ImageOperands_5"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageFetch",
+      "opcode": 95,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Image",
+        "Coordinate",
+        "ImageOperands_4"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageGather",
+      "opcode": 96,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Sampled Image",
+        "Coordinate",
+        "Component",
+        "ImageOperands_5"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageDrefGather",
+      "opcode": 97,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Sampled Image",
+        "Coordinate",
+        "D~ref~",
+        "ImageOperands_5"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageRead",
+      "opcode": 98,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Image",
+        "Coordinate",
+        "ImageOperands_4"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageWrite",
+      "opcode": 99,
+      "operand_mapping": [
+        "Image",
+        "Coordinate",
+        "Texel",
+        "ImageOperands_3"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImage",
+      "opcode": 100,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Sampled Image"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageQueryFormat",
+      "opcode": 101,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Image"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageQueryOrder",
+      "opcode": 102,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Image"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageQuerySizeLod",
+      "opcode": 103,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Image",
+        "Level of Detail"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageQuerySize",
+      "opcode": 104,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Image"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageQueryLod",
+      "opcode": 105,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Sampled Image",
+        "Coordinate"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageQueryLevels",
+      "opcode": 106,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Image"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageQuerySamples",
+      "opcode": 107,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Image"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpConvertFToU",
+      "opcode": 109,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Float Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpConvertFToS",
+      "opcode": 110,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Float Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpConvertSToF",
+      "opcode": 111,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Signed Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpConvertUToF",
+      "opcode": 112,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Unsigned Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpUConvert",
+      "opcode": 113,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Unsigned Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSConvert",
+      "opcode": 114,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Signed Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpFConvert",
+      "opcode": 115,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Float Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpQuantizeToF16",
+      "opcode": 116,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpConvertPtrToU",
+      "opcode": 117,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pointer"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSatConvertSToU",
+      "opcode": 118,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Signed Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSatConvertUToS",
+      "opcode": 119,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Unsigned Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpConvertUToPtr",
+      "opcode": 120,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Integer Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpPtrCastToGeneric",
+      "opcode": 121,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pointer"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGenericCastToPtr",
+      "opcode": 122,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pointer"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGenericCastToPtrExplicit",
+      "opcode": 123,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pointer",
+        "Storage"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpBitcast",
+      "opcode": 124,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSNegate",
+      "opcode": 126,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpFNegate",
+      "opcode": 127,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpIAdd",
+      "opcode": 128,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpFAdd",
+      "opcode": 129,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpISub",
+      "opcode": 130,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpFSub",
+      "opcode": 131,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpIMul",
+      "opcode": 132,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpFMul",
+      "opcode": 133,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpUDiv",
+      "opcode": 134,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSDiv",
+      "opcode": 135,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpFDiv",
+      "opcode": 136,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpUMod",
+      "opcode": 137,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSRem",
+      "opcode": 138,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSMod",
+      "opcode": 139,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpFRem",
+      "opcode": 140,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpFMod",
+      "opcode": 141,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpVectorTimesScalar",
+      "opcode": 142,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Vector",
+        "Scalar"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpMatrixTimesScalar",
+      "opcode": 143,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Matrix",
+        "Scalar"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpVectorTimesMatrix",
+      "opcode": 144,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Vector",
+        "Matrix"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpMatrixTimesVector",
+      "opcode": 145,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Matrix",
+        "Vector"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpMatrixTimesMatrix",
+      "opcode": 146,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "LeftMatrix",
+        "RightMatrix"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpOuterProduct",
+      "opcode": 147,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Vector 1",
+        "Vector 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpDot",
+      "opcode": 148,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Vector 1",
+        "Vector 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpIAddCarry",
+      "opcode": 149,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpISubBorrow",
+      "opcode": 150,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpUMulExtended",
+      "opcode": 151,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSMulExtended",
+      "opcode": 152,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpAny",
+      "opcode": 154,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Vector"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpAll",
+      "opcode": 155,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Vector"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpIsNan",
+      "opcode": 156,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpIsInf",
+      "opcode": 157,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpIsFinite",
+      "opcode": 158,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpIsNormal",
+      "opcode": 159,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSignBitSet",
+      "opcode": 160,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "x"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpLessOrGreater",
+      "opcode": 161,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "x",
+        "y"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpOrdered",
+      "opcode": 162,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "x",
+        "y"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpUnordered",
+      "opcode": 163,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "x",
+        "y"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpLogicalEqual",
+      "opcode": 164,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpLogicalNotEqual",
+      "opcode": 165,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpLogicalOr",
+      "opcode": 166,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpLogicalAnd",
+      "opcode": 167,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpLogicalNot",
+      "opcode": 168,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSelect",
+      "opcode": 169,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Condition",
+        "Object 1",
+        "Object 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpIEqual",
+      "opcode": 170,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpINotEqual",
+      "opcode": 171,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpUGreaterThan",
+      "opcode": 172,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSGreaterThan",
+      "opcode": 173,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpUGreaterThanEqual",
+      "opcode": 174,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSGreaterThanEqual",
+      "opcode": 175,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpULessThan",
+      "opcode": 176,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSLessThan",
+      "opcode": 177,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpULessThanEqual",
+      "opcode": 178,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSLessThanEqual",
+      "opcode": 179,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpFOrdEqual",
+      "opcode": 180,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpFUnordEqual",
+      "opcode": 181,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpFOrdNotEqual",
+      "opcode": 182,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpFUnordNotEqual",
+      "opcode": 183,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpFOrdLessThan",
+      "opcode": 184,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpFUnordLessThan",
+      "opcode": 185,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpFOrdGreaterThan",
+      "opcode": 186,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpFUnordGreaterThan",
+      "opcode": 187,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpFOrdLessThanEqual",
+      "opcode": 188,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpFUnordLessThanEqual",
+      "opcode": 189,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpFOrdGreaterThanEqual",
+      "opcode": 190,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpFUnordGreaterThanEqual",
+      "opcode": 191,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpShiftRightLogical",
+      "opcode": 194,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Base",
+        "Shift"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpShiftRightArithmetic",
+      "opcode": 195,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Base",
+        "Shift"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpShiftLeftLogical",
+      "opcode": 196,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Base",
+        "Shift"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpBitwiseOr",
+      "opcode": 197,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpBitwiseXor",
+      "opcode": 198,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpBitwiseAnd",
+      "opcode": 199,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand 1",
+        "Operand 2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpNot",
+      "opcode": 200,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Operand"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpBitFieldInsert",
+      "opcode": 201,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Base",
+        "Insert",
+        "Offset",
+        "Count"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpBitFieldSExtract",
+      "opcode": 202,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Base",
+        "Offset",
+        "Count"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpBitFieldUExtract",
+      "opcode": 203,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Base",
+        "Offset",
+        "Count"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpBitReverse",
+      "opcode": 204,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Base"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpBitCount",
+      "opcode": 205,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Base"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpDPdx",
+      "opcode": 207,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "P"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpDPdy",
+      "opcode": 208,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "P"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpFwidth",
+      "opcode": 209,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "P"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpDPdxFine",
+      "opcode": 210,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "P"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpDPdyFine",
+      "opcode": 211,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "P"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpFwidthFine",
+      "opcode": 212,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "P"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpDPdxCoarse",
+      "opcode": 213,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "P"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpDPdyCoarse",
+      "opcode": 214,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "P"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpFwidthCoarse",
+      "opcode": 215,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "P"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpEmitVertex",
+      "opcode": 218,
+      "operand_mapping": [],
+      "rules": []
+    },
+    {
+      "opname": "OpEndPrimitive",
+      "opcode": 219,
+      "operand_mapping": [],
+      "rules": []
+    },
+    {
+      "opname": "OpEmitStreamVertex",
+      "opcode": 220,
+      "operand_mapping": [
+        "Stream"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpEndStreamPrimitive",
+      "opcode": 221,
+      "operand_mapping": [
+        "Stream"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpControlBarrier",
+      "opcode": 224,
+      "operand_mapping": [
+        "Execution",
+        "Memory",
+        "Semantics"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpMemoryBarrier",
+      "opcode": 225,
+      "operand_mapping": [
+        "Memory",
+        "Semantics"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpAtomicLoad",
+      "opcode": 227,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pointer",
+        "Scope",
+        "Semantics"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpAtomicStore",
+      "opcode": 228,
+      "operand_mapping": [
+        "Pointer",
+        "Scope",
+        "Semantics",
+        "Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpAtomicExchange",
+      "opcode": 229,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pointer",
+        "Scope",
+        "Semantics",
+        "Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpAtomicCompareExchange",
+      "opcode": 230,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pointer",
+        "Scope",
+        "Equal",
+        "Unequal",
+        "Value",
+        "Comparator"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpAtomicCompareExchangeWeak",
+      "opcode": 231,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pointer",
+        "Scope",
+        "Equal",
+        "Unequal",
+        "Value",
+        "Comparator"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpAtomicIIncrement",
+      "opcode": 232,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pointer",
+        "Scope",
+        "Semantics"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpAtomicIDecrement",
+      "opcode": 233,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pointer",
+        "Scope",
+        "Semantics"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpAtomicIAdd",
+      "opcode": 234,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pointer",
+        "Scope",
+        "Semantics",
+        "Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpAtomicISub",
+      "opcode": 235,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pointer",
+        "Scope",
+        "Semantics",
+        "Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpAtomicSMin",
+      "opcode": 236,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pointer",
+        "Scope",
+        "Semantics",
+        "Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpAtomicUMin",
+      "opcode": 237,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pointer",
+        "Scope",
+        "Semantics",
+        "Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpAtomicSMax",
+      "opcode": 238,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pointer",
+        "Scope",
+        "Semantics",
+        "Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpAtomicUMax",
+      "opcode": 239,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pointer",
+        "Scope",
+        "Semantics",
+        "Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpAtomicAnd",
+      "opcode": 240,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pointer",
+        "Scope",
+        "Semantics",
+        "Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpAtomicOr",
+      "opcode": 241,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pointer",
+        "Scope",
+        "Semantics",
+        "Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpAtomicXor",
+      "opcode": 242,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pointer",
+        "Scope",
+        "Semantics",
+        "Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpPhi",
+      "opcode": 245,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Variable, Parent, ..."
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpLoopMerge",
+      "opcode": 246,
+      "operand_mapping": [
+        "Merge Block",
+        "Continue Target",
+        "LoopControl_2"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSelectionMerge",
+      "opcode": 247,
+      "operand_mapping": [
+        "Merge Block",
+        "SelectionControl_1"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpLabel",
+      "opcode": 248,
+      "operand_mapping": [
+        "IdResult_0"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpBranch",
+      "opcode": 249,
+      "operand_mapping": [
+        "Target Label"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpBranchConditional",
+      "opcode": 250,
+      "operand_mapping": [
+        "Condition",
+        "True Label",
+        "False Label",
+        "Branch weights"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSwitch",
+      "opcode": 251,
+      "operand_mapping": [
+        "Selector",
+        "Default",
+        "Target"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpKill",
+      "opcode": 252,
+      "operand_mapping": [],
+      "rules": []
+    },
+    {
+      "opname": "OpReturn",
+      "opcode": 253,
+      "operand_mapping": [],
+      "rules": []
+    },
+    {
+      "opname": "OpReturnValue",
+      "opcode": 254,
+      "operand_mapping": [
+        "Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpUnreachable",
+      "opcode": 255,
+      "operand_mapping": [],
+      "rules": []
+    },
+    {
+      "opname": "OpLifetimeStart",
+      "opcode": 256,
+      "operand_mapping": [
+        "Pointer",
+        "Size"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpLifetimeStop",
+      "opcode": 257,
+      "operand_mapping": [
+        "Pointer",
+        "Size"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGroupAsyncCopy",
+      "opcode": 259,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Execution",
+        "Destination",
+        "Source",
+        "Num Elements",
+        "Stride",
+        "Event"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGroupWaitEvents",
+      "opcode": 260,
+      "operand_mapping": [
+        "Execution",
+        "Num Events",
+        "Events List"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGroupAll",
+      "opcode": 261,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Execution",
+        "Predicate"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGroupAny",
+      "opcode": 262,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Execution",
+        "Predicate"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGroupBroadcast",
+      "opcode": 263,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Execution",
+        "Value",
+        "LocalId"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGroupIAdd",
+      "opcode": 264,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Execution",
+        "Operation",
+        "X"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGroupFAdd",
+      "opcode": 265,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Execution",
+        "Operation",
+        "X"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGroupFMin",
+      "opcode": 266,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Execution",
+        "Operation",
+        "X"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGroupUMin",
+      "opcode": 267,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Execution",
+        "Operation",
+        "X"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGroupSMin",
+      "opcode": 268,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Execution",
+        "Operation",
+        "X"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGroupFMax",
+      "opcode": 269,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Execution",
+        "Operation",
+        "X"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGroupUMax",
+      "opcode": 270,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Execution",
+        "Operation",
+        "X"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGroupSMax",
+      "opcode": 271,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Execution",
+        "Operation",
+        "X"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpReadPipe",
+      "opcode": 274,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pipe",
+        "Pointer",
+        "Packet Size",
+        "Packet Alignment"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpWritePipe",
+      "opcode": 275,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pipe",
+        "Pointer",
+        "Packet Size",
+        "Packet Alignment"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpReservedReadPipe",
+      "opcode": 276,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pipe",
+        "Reserve Id",
+        "Index",
+        "Pointer",
+        "Packet Size",
+        "Packet Alignment"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpReservedWritePipe",
+      "opcode": 277,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pipe",
+        "Reserve Id",
+        "Index",
+        "Pointer",
+        "Packet Size",
+        "Packet Alignment"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpReserveReadPipePackets",
+      "opcode": 278,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pipe",
+        "Num Packets",
+        "Packet Size",
+        "Packet Alignment"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpReserveWritePipePackets",
+      "opcode": 279,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pipe",
+        "Num Packets",
+        "Packet Size",
+        "Packet Alignment"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpCommitReadPipe",
+      "opcode": 280,
+      "operand_mapping": [
+        "Pipe",
+        "Reserve Id",
+        "Packet Size",
+        "Packet Alignment"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpCommitWritePipe",
+      "opcode": 281,
+      "operand_mapping": [
+        "Pipe",
+        "Reserve Id",
+        "Packet Size",
+        "Packet Alignment"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpIsValidReserveId",
+      "opcode": 282,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Reserve Id"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGetNumPipePackets",
+      "opcode": 283,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pipe",
+        "Packet Size",
+        "Packet Alignment"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGetMaxPipePackets",
+      "opcode": 284,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pipe",
+        "Packet Size",
+        "Packet Alignment"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGroupReserveReadPipePackets",
+      "opcode": 285,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Execution",
+        "Pipe",
+        "Num Packets",
+        "Packet Size",
+        "Packet Alignment"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGroupReserveWritePipePackets",
+      "opcode": 286,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Execution",
+        "Pipe",
+        "Num Packets",
+        "Packet Size",
+        "Packet Alignment"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGroupCommitReadPipe",
+      "opcode": 287,
+      "operand_mapping": [
+        "Execution",
+        "Pipe",
+        "Reserve Id",
+        "Packet Size",
+        "Packet Alignment"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGroupCommitWritePipe",
+      "opcode": 288,
+      "operand_mapping": [
+        "Execution",
+        "Pipe",
+        "Reserve Id",
+        "Packet Size",
+        "Packet Alignment"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpEnqueueMarker",
+      "opcode": 291,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Queue",
+        "Num Events",
+        "Wait Events",
+        "Ret Event"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpEnqueueKernel",
+      "opcode": 292,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Queue",
+        "Flags",
+        "ND Range",
+        "Num Events",
+        "Wait Events",
+        "Ret Event",
+        "Invoke",
+        "Param",
+        "Param Size",
+        "Param Align",
+        "Local Size"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGetKernelNDrangeSubGroupCount",
+      "opcode": 293,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "ND Range",
+        "Invoke",
+        "Param",
+        "Param Size",
+        "Param Align"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGetKernelNDrangeMaxSubGroupSize",
+      "opcode": 294,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "ND Range",
+        "Invoke",
+        "Param",
+        "Param Size",
+        "Param Align"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGetKernelWorkGroupSize",
+      "opcode": 295,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Invoke",
+        "Param",
+        "Param Size",
+        "Param Align"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGetKernelPreferredWorkGroupSizeMultiple",
+      "opcode": 296,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Invoke",
+        "Param",
+        "Param Size",
+        "Param Align"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpRetainEvent",
+      "opcode": 297,
+      "operand_mapping": [
+        "Event"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpReleaseEvent",
+      "opcode": 298,
+      "operand_mapping": [
+        "Event"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpCreateUserEvent",
+      "opcode": 299,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpIsValidEvent",
+      "opcode": 300,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Event"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSetUserEventStatus",
+      "opcode": 301,
+      "operand_mapping": [
+        "Event",
+        "Status"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpCaptureEventProfilingInfo",
+      "opcode": 302,
+      "operand_mapping": [
+        "Event",
+        "Profiling Info",
+        "Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGetDefaultQueue",
+      "opcode": 303,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpBuildNDRange",
+      "opcode": 304,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "GlobalWorkSize",
+        "LocalWorkSize",
+        "GlobalWorkOffset"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageSparseSampleImplicitLod",
+      "opcode": 305,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Sampled Image",
+        "Coordinate",
+        "ImageOperands_4"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageSparseSampleExplicitLod",
+      "opcode": 306,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Sampled Image",
+        "Coordinate",
+        "ImageOperands_4"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageSparseSampleDrefImplicitLod",
+      "opcode": 307,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Sampled Image",
+        "Coordinate",
+        "D~ref~",
+        "ImageOperands_5"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageSparseSampleDrefExplicitLod",
+      "opcode": 308,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Sampled Image",
+        "Coordinate",
+        "D~ref~",
+        "ImageOperands_5"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageSparseSampleProjImplicitLod",
+      "opcode": 309,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Sampled Image",
+        "Coordinate",
+        "ImageOperands_4"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageSparseSampleProjExplicitLod",
+      "opcode": 310,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Sampled Image",
+        "Coordinate",
+        "ImageOperands_4"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageSparseSampleProjDrefImplicitLod",
+      "opcode": 311,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Sampled Image",
+        "Coordinate",
+        "D~ref~",
+        "ImageOperands_5"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageSparseSampleProjDrefExplicitLod",
+      "opcode": 312,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Sampled Image",
+        "Coordinate",
+        "D~ref~",
+        "ImageOperands_5"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageSparseFetch",
+      "opcode": 313,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Image",
+        "Coordinate",
+        "ImageOperands_4"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageSparseGather",
+      "opcode": 314,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Sampled Image",
+        "Coordinate",
+        "Component",
+        "ImageOperands_5"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageSparseDrefGather",
+      "opcode": 315,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Sampled Image",
+        "Coordinate",
+        "D~ref~",
+        "ImageOperands_5"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageSparseTexelsResident",
+      "opcode": 316,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Resident Code"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpNoLine",
+      "opcode": 317,
+      "operand_mapping": [],
+      "rules": []
+    },
+    {
+      "opname": "OpAtomicFlagTestAndSet",
+      "opcode": 318,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pointer",
+        "Scope",
+        "Semantics"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpAtomicFlagClear",
+      "opcode": 319,
+      "operand_mapping": [
+        "Pointer",
+        "Scope",
+        "Semantics"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpImageSparseRead",
+      "opcode": 320,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Image",
+        "Coordinate",
+        "ImageOperands_4"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSizeOf",
+      "opcode": 321,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pointer"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpTypePipeStorage",
+      "opcode": 322,
+      "operand_mapping": [
+        "IdResult_0"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpConstantPipeStorage",
+      "opcode": 323,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Packet Size",
+        "Packet Alignment",
+        "Capacity"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpCreatePipeFromPipeStorage",
+      "opcode": 324,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Pipe Storage"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGetKernelLocalSizeForSubgroupCount",
+      "opcode": 325,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Subgroup Count",
+        "Invoke",
+        "Param",
+        "Param Size",
+        "Param Align"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGetKernelMaxNumSubgroups",
+      "opcode": 326,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Invoke",
+        "Param",
+        "Param Size",
+        "Param Align"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpTypeNamedBarrier",
+      "opcode": 327,
+      "operand_mapping": [
+        "IdResult_0"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpNamedBarrierInitialize",
+      "opcode": 328,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Subgroup Count"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpMemoryNamedBarrier",
+      "opcode": 329,
+      "operand_mapping": [
+        "Named Barrier",
+        "Memory",
+        "Semantics"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpModuleProcessed",
+      "opcode": 330,
+      "operand_mapping": [
+        "Process"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpExecutionModeId",
+      "opcode": 331,
+      "operand_mapping": [
+        "Entry Point",
+        "Mode"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpDecorateId",
+      "opcode": 332,
+      "operand_mapping": [
+        "Target",
+        "Decoration_1"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSubgroupBallotKHR",
+      "opcode": 4421,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Predicate"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSubgroupFirstInvocationKHR",
+      "opcode": 4422,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSubgroupAllKHR",
+      "opcode": 4428,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Predicate"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSubgroupAnyKHR",
+      "opcode": 4429,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Predicate"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSubgroupAllEqualKHR",
+      "opcode": 4430,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Predicate"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSubgroupReadInvocationKHR",
+      "opcode": 4432,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Value",
+        "Index"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGroupIAddNonUniformAMD",
+      "opcode": 5000,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Execution",
+        "Operation",
+        "X"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGroupFAddNonUniformAMD",
+      "opcode": 5001,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Execution",
+        "Operation",
+        "X"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGroupFMinNonUniformAMD",
+      "opcode": 5002,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Execution",
+        "Operation",
+        "X"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGroupUMinNonUniformAMD",
+      "opcode": 5003,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Execution",
+        "Operation",
+        "X"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGroupSMinNonUniformAMD",
+      "opcode": 5004,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Execution",
+        "Operation",
+        "X"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGroupFMaxNonUniformAMD",
+      "opcode": 5005,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Execution",
+        "Operation",
+        "X"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGroupUMaxNonUniformAMD",
+      "opcode": 5006,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Execution",
+        "Operation",
+        "X"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpGroupSMaxNonUniformAMD",
+      "opcode": 5007,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Execution",
+        "Operation",
+        "X"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpFragmentMaskFetchAMD",
+      "opcode": 5011,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Image",
+        "Coordinate"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpFragmentFetchAMD",
+      "opcode": 5012,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Image",
+        "Coordinate",
+        "Fragment Index"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSubgroupShuffleINTEL",
+      "opcode": 5571,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Data",
+        "InvocationId"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSubgroupShuffleDownINTEL",
+      "opcode": 5572,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Current",
+        "Next",
+        "Delta"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSubgroupShuffleUpINTEL",
+      "opcode": 5573,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Previous",
+        "Current",
+        "Delta"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSubgroupShuffleXorINTEL",
+      "opcode": 5574,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Data",
+        "Value"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSubgroupBlockReadINTEL",
+      "opcode": 5575,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Ptr"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSubgroupBlockWriteINTEL",
+      "opcode": 5576,
+      "operand_mapping": [
+        "Ptr",
+        "Data"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSubgroupImageBlockReadINTEL",
+      "opcode": 5577,
+      "operand_mapping": [
+        "IdResultType_0",
+        "IdResult_1",
+        "Image",
+        "Coordinate"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpSubgroupImageBlockWriteINTEL",
+      "opcode": 5578,
+      "operand_mapping": [
+        "Image",
+        "Coordinate",
+        "Data"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpDecorateStringGOOGLE",
+      "opcode": 5632,
+      "operand_mapping": [
+        "Target",
+        "Decoration_1"
+      ],
+      "rules": []
+    },
+    {
+      "opname": "OpMemberDecorateStringGOOGLE",
+      "opcode": 5633,
+      "operand_mapping": [
+        "Struct Type",
+        "Member",
+        "Decoration_2"
+      ],
+      "rules": []
     }
   ]
 }

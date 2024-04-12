@@ -15,28 +15,28 @@ There is a [serde](https://crates.io/crates/serde) based parser for the JSON rul
 
 ### parse-rules.rs
 
-Parses he first argument, assuming its a rules file, and prints out the parsed rules. Call from the root via
+Parses the first argument, assuming it's a rules file, and prints out the parsed rules. Call from the root via
 
 `cargo run --example parse_rules -- rules/1.2/spirv.core.grammar-rules.json`
 
 ### generate-rules-file
 
-Takes a grammar file and generate a rules template file. Call from root via
+Takes a grammar file and generates a rules template file. Call from root via
 
 `cargo run --bin generate-rules-file -- spirv-headers/SPIRV-Headers/include/spirv/1.2/spirv.core.grammar.json`
 
 It'll take care of creating a similar operand-naming (if possible) as well as matching the opcodes and opnames.
-Finally it will add all _well-known_ rules to the `rule_types` table.
+Finally, it will add all _well-known_ rules to the `rule_types` table.
 
 
 ### Contributing
 
-All contributions are welcome. However I ask for one thing:
+All contributions are welcome. I ask for one thing:
 
-If you add rules to an operation that has no rules _at-all_ at the moment. Please take the time to add _all_ rules. Otherwise tracking unimplemented ops becomes a nightmare.
+If you add rules to an operation that has no rules _at-all_ at the moment, please take the time to add _all_ rules. Otherwise, tracking unimplemented ops becomes a nightmare.
 
 
 
 ### License
 
-None(?): I hope there there might be an official version of this, or this will be patched into the official SPIR-V spec at some point.
+None(?): I hope there might be an official version of this, or this will be patched into the official SPIR-V spec at some point.

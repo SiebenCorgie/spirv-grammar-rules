@@ -2,7 +2,6 @@
 use std::{ffi::OsString, str::FromStr};
 
 use spirv_grammar_rules::{
-    serde::Serialize,
     serde_json::{self, Value},
     GrammarRules, Instruction,
 };
