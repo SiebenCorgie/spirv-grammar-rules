@@ -1,5 +1,5 @@
 [workspace]
-members = [
+members = [ "crates/generate-rules-file",
   "crates/spirv-grammar-rules"
 ]
 resolver = "2"

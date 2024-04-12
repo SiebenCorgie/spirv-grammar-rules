@@ -8,7 +8,25 @@ This is a proof-of-concept on how the rules currently only expressed in the _des
 The `rules` subdirectory is structured exactly like the `include/spirv` directory of the original [SPIR-V-Headers](https://github.com/KhronosGroup/SPIRV-Headers) repository.
 It contains the rules for `*.grammar.json` of the SPIR-V-Headers repository.
 
-There is a [serde](https://crates.io/crates/serde) based parser for the JSON rules file in `crates/spirv-grammar-rules`. 
+## Libs
+There is a [serde](https://crates.io/crates/serde) based parser for the JSON rules file in `crates/spirv-grammar-rules`.
+
+## Executables
+
+### parse-rules.rs
+
+Parses he first argument, assuming its a rules file, and prints out the parsed rules. Call from the root via
+
+`cargo run --example parse_rules -- rules/1.2/spirv.core.grammar-rules.json`
+
+### generate-rules-file
+
+Takes a grammar file and generate a rules template file. Call from root via
+
+`cargo run --bin generate-rules-file -- spirv-headers/SPIRV-Headers/include/spirv/1.2/spirv.core.grammar.json`
+
+It'll take care of creating a similar operand-naming (if possible) as well as matching the opcodes and opnames.
+Finally it will add all _well-known_ rules to the `rule_types` table.
 
 
 ### Contributing

@@ -1,11 +1,14 @@
 use std::collections::HashMap;
 
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
+
+pub use serde;
+pub use serde_json;
 
 ///Types as defined in 2.2.2 of the unified spec:
 ///<https://registry.khronos.org/SPIR-V/specs/unified1/SPIRV.html#_types>
 //TODO: This should probably be split since a lot of those are overlaping.
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Serialize, Debug)]
 pub enum Type {
     Boolean,
     Integer,
@@ -29,7 +32,7 @@ pub enum Type {
     VariablePointer,
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Serialize, Debug)]
 pub enum Rule {
     ///Declares that `operand` needs to
     /// have one of `ty`'s base type.
@@ -48,7 +51,7 @@ pub enum Rule {
     ResultTypeEqual(String),
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Serialize, Debug)]
 pub struct Instruction {
     pub opname: String,
     ///The opcode of that instruction in the [source_grammar](GrammarRules::source_grammar).
@@ -61,7 +64,7 @@ pub struct Instruction {
     pub rules: Vec<Rule>,
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Serialize, Debug)]
 pub struct GrammarRules {
     ///Name of the grammar file those rules are made for.
     pub source_grammar: String,
@@ -69,4 +72,31 @@ pub struct GrammarRules {
     pub rule_types: HashMap<String, String>,
     ///All defined instructions and their rules.
     pub instructions: Vec<Instruction>,
+}
+
+impl GrammarRules {
+    pub fn new(src_grammar_file: String) -> Self {
+        let mut rule_types = HashMap::new();
+        rule_types.insert(
+            "base_type".to_owned(),
+            "Constraints the base type of this operand to be in this set of types".to_owned(),
+        );
+
+        rule_types.insert(
+            "type_constrain".to_owned(),
+            "The operand must be within the set of types as defined in 2.2.2.".to_owned(),
+        );
+
+        rule_types.insert(
+            "result_equal_type".to_owned(),
+            "Signals that an operand needs to have the same type as the result of that instruction"
+                .to_owned(),
+        );
+
+        GrammarRules {
+            source_grammar: src_grammar_file,
+            rule_types,
+            instructions: Vec::new(),
+        }
+    }
 }
