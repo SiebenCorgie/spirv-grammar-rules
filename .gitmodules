@@ -1,0 +1,3 @@
+[submodule "spirv-headers/SPIRV-Headers"]
+	path = spirv-headers/SPIRV-Headers
+	url = https://github.com/KhronosGroup/SPIRV-Headers.git

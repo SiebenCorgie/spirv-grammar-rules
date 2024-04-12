@@ -1,0 +1,44 @@
+
+
+{
+  source_grammar : "spirv.core.grammar.json",
+  "rule_types" : {
+    "base_type" : "Describes the base type of some higher order type.",
+    "type_constrain" : "The operand must be within the set of types as defined in 2.2.2.",
+    "result_equal_type" : "Signals that an operand needs to have the same type as the result of that instruction."
+  },
+  "instructions" : [
+    {
+      "opcode" : 133,
+      "operand_mapping" : ["result_type", "result", "Operand 1", "Operand 2"],
+      "rules" : [
+        {"result_equal_type" : "Operand 1"},
+        {"result_equal_type" : "Operand 2"},
+        {
+          "base_type" : {
+            "operand" : "Operand 1", 
+            "base_types" : ["FloatingPoint"]
+          }
+        },
+        {
+          "base_type" : {
+            "operand" : "Operand 2", 
+            "base_types" : ["FloatingPoint"]
+          }
+        },
+        {
+          "type_constrain" : {
+            "operand" : "Operand 1",
+            "ty" : ["Scalar", "Vector"]
+          }
+        },
+        {
+          "type_constrain" : {
+            "operand" : "Operand 2",
+            "ty" : ["Scalar", "Vector"]
+          }
+        }
+      ]
+    }
+  ]
+}
