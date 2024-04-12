@@ -50,6 +50,7 @@ pub enum Rule {
 
 #[derive(Deserialize, Debug)]
 pub struct Instruction {
+    pub opname: String,
     ///The opcode of that instruction in the [source_grammar](GrammarRules::source_grammar).
     pub opcode: u32,
     ///Binds names to the operands in the order of the operand definition of the source-grammar's

@@ -8,8 +8,7 @@ This is a proof-of-concept on how the rules currently only expressed in the _des
 The `rules` subdirectory is structured exactly like the `include/spirv` directory of the original [SPIR-V-Headers](https://github.com/KhronosGroup/SPIRV-Headers) repository.
 It contains the rules for `*.grammar.json` of the SPIR-V-Headers repository.
 
-The Rust program can patch the original `*.grammar.json` file with the correlating `*.grammar-rules.json` and outputs a combined `*.grammar.json` file. 
-
+There is a [serde](https://crates.io/crates/serde) based parser for the JSON rules file in `crates/spirv-grammar-rules`. 
 
 
 ### Contributing
