@@ -1,9 +1,15 @@
 {
   "source_grammar": "extinst.glsl.std.450.grammar.json",
   "rule_types": {
-    "type_constrain": "The operand must be within the set of types as defined in 2.2.2.",
+    "type_constraint": "The operand must be within the set of types as defined in 2.2.2.",
     "base_type": "Constraints the base type of this operand to be in this set of types",
-    "result_equal_type": "Signals that an operand needs to have the same type as the result of that instruction"
+    "result_equal_type": "Signals that an operand needs to have the same type as the result of that instruction",
+    "component_count_equal" : "The number of components of a and b need to be equal.",
+    "component_width_equal" : "The component width of a and b need to be equal.",
+    "component_type_equal" : "The component type of both operands need to be equal",
+    "is_signed" : "signals the signedness of a type.",
+    "component_width" : "Specifies a list of allowed component widths",
+    "component_count" : "Specifies a list of allowed number of components"
   },
   "instructions": [
     {
@@ -12,7 +18,11 @@
       "operand_mapping": [
         "x"
       ],
-      "rules": []
+      "rules": [        
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "x"}
+      ]
     },
     {
       "opname": "RoundEven",
@@ -20,7 +30,11 @@
       "operand_mapping": [
         "x"
       ],
-      "rules": []
+      "rules": [
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "x"}
+      ]
     },
     {
       "opname": "Trunc",
@@ -28,7 +42,11 @@
       "operand_mapping": [
         "x"
       ],
-      "rules": []
+      "rules": [
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "x"}
+      ]
     },
     {
       "opname": "FAbs",
@@ -36,7 +54,11 @@
       "operand_mapping": [
         "x"
       ],
-      "rules": []
+      "rules": [        
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "x"}
+      ]
     },
     {
       "opname": "SAbs",
@@ -44,7 +66,13 @@
       "operand_mapping": [
         "x"
       ],
-      "rules": []
+      "rules": [
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["Integer"]}},
+        {"result_equal_type" : "x"},     
+        {"component_count_equal" : {"a" : "Result", "b" : "x"}},
+        {"component_width_equal" : {"a" : "Result", "b" : "x"}}
+      ]
     },
     {
       "opname": "FSign",
@@ -52,7 +80,11 @@
       "operand_mapping": [
         "x"
       ],
-      "rules": []
+      "rules": [        
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "x"}
+      ]
     },
     {
       "opname": "SSign",
@@ -60,7 +92,13 @@
       "operand_mapping": [
         "x"
       ],
-      "rules": []
+      "rules": [       
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["Integer"]}},
+        {"result_equal_type" : "x"},
+        {"component_count_equal" : {"a" : "Result", "b" : "x"}},
+        {"component_width_equal" : {"a" : "Result", "b" : "x"}}
+      ]
     },
     {
       "opname": "Floor",
@@ -68,7 +106,11 @@
       "operand_mapping": [
         "x"
       ],
-      "rules": []
+      "rules": [        
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "x"}
+      ]
     },
     {
       "opname": "Ceil",
@@ -76,7 +118,11 @@
       "operand_mapping": [
         "x"
       ],
-      "rules": []
+      "rules": [        
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "x"}
+      ]
     },
     {
       "opname": "Fract",
@@ -84,7 +130,11 @@
       "operand_mapping": [
         "x"
       ],
-      "rules": []
+      "rules": [
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "x"}
+      ]
     },
     {
       "opname": "Radians",
@@ -92,7 +142,12 @@
       "operand_mapping": [
         "degrees"
       ],
-      "rules": []
+      "rules": [
+        {"type_constraint" : {"operand" : "degrees" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "degrees", "base_types" : ["FloatingPoint"]}},
+        {"component_width" : {"operand" : "degrees", "allowed" : ["16", "32"]}},
+        {"result_equal_type" : "degrees"}
+      ]
     },
     {
       "opname": "Degrees",
@@ -100,7 +155,12 @@
       "operand_mapping": [
         "radians"
       ],
-      "rules": []
+      "rules": [        
+        {"type_constraint" : {"operand" : "radians" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "radians", "base_types" : ["FloatingPoint"]}},
+        {"component_width" : {"operand" : "radians", "allowed" : ["16", "32"]}},
+        {"result_equal_type" : "radians"}
+      ]
     },
     {
       "opname": "Sin",
@@ -108,7 +168,12 @@
       "operand_mapping": [
         "x"
       ],
-      "rules": []
+      "rules": [        
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"result_equal_type" : "x"}
+      ]
     },
     {
       "opname": "Cos",
@@ -116,7 +181,12 @@
       "operand_mapping": [
         "x"
       ],
-      "rules": []
+      "rules": [        
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"result_equal_type" : "x"}
+      ]
     },
     {
       "opname": "Tan",
@@ -124,7 +194,12 @@
       "operand_mapping": [
         "x"
       ],
-      "rules": []
+      "rules": [
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"result_equal_type" : "x"}
+      ]
     },
     {
       "opname": "Asin",
@@ -132,7 +207,12 @@
       "operand_mapping": [
         "x"
       ],
-      "rules": []
+      "rules": [
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"result_equal_type" : "x"}
+      ]
     },
     {
       "opname": "Acos",
@@ -140,7 +220,12 @@
       "operand_mapping": [
         "x"
       ],
-      "rules": []
+      "rules": [
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"result_equal_type" : "x"}
+      ]
     },
     {
       "opname": "Atan",
@@ -148,7 +233,12 @@
       "operand_mapping": [
         "y_over_x"
       ],
-      "rules": []
+      "rules": [
+        {"type_constraint" : {"operand" : "y_over_x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "y_over_x", "base_types" : ["FloatingPoint"]}},
+        {"component_width" : {"operand" : "y_over_x", "allowed" : ["16", "32"]}},
+        {"result_equal_type" : "y_over_x"}
+      ]
     },
     {
       "opname": "Sinh",
@@ -156,7 +246,12 @@
       "operand_mapping": [
         "x"
       ],
-      "rules": []
+      "rules": [
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"result_equal_type" : "x"}
+      ]
     },
     {
       "opname": "Cosh",
@@ -164,7 +259,12 @@
       "operand_mapping": [
         "x"
       ],
-      "rules": []
+      "rules": [        
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"result_equal_type" : "x"}
+      ]
     },
     {
       "opname": "Tanh",
@@ -172,7 +272,12 @@
       "operand_mapping": [
         "x"
       ],
-      "rules": []
+      "rules": [
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"result_equal_type" : "x"}
+      ]
     },
     {
       "opname": "Asinh",
@@ -180,7 +285,12 @@
       "operand_mapping": [
         "x"
       ],
-      "rules": []
+      "rules": [
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"result_equal_type" : "x"}
+      ]
     },
     {
       "opname": "Acosh",
@@ -188,7 +298,12 @@
       "operand_mapping": [
         "x"
       ],
-      "rules": []
+      "rules": [
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"result_equal_type" : "x"}
+      ]
     },
     {
       "opname": "Atanh",
@@ -196,7 +311,12 @@
       "operand_mapping": [
         "x"
       ],
-      "rules": []
+      "rules": [
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"result_equal_type" : "x"}
+      ]
     },
     {
       "opname": "Atan2",
@@ -205,7 +325,16 @@
         "y",
         "x"
       ],
-      "rules": []
+      "rules": [
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"type_constraint" : {"operand" : "y" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"base_type" : {"operand" : "y", "base_types" : ["FloatingPoint"]}},
+        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"component_width" : {"operand" : "y", "allowed" : ["16", "32"]}},
+        {"result_equal_type" : "x"},
+        {"result_equal_type" : "y"}
+      ]
     },
     {
       "opname": "Pow",
@@ -214,7 +343,16 @@
         "x",
         "y"
       ],
-      "rules": []
+      "rules": [        
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"type_constraint" : {"operand" : "y" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"base_type" : {"operand" : "y", "base_types" : ["FloatingPoint"]}},
+        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"component_width" : {"operand" : "y", "allowed" : ["16", "32"]}},
+        {"result_equal_type" : "x"},
+        {"result_equal_type" : "y"}
+      ]
     },
     {
       "opname": "Exp",
@@ -222,7 +360,12 @@
       "operand_mapping": [
         "x"
       ],
-      "rules": []
+      "rules": [
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"result_equal_type" : "x"}
+      ]
     },
     {
       "opname": "Log",
@@ -230,7 +373,12 @@
       "operand_mapping": [
         "x"
       ],
-      "rules": []
+      "rules": [        
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"result_equal_type" : "x"}
+      ]
     },
     {
       "opname": "Exp2",
@@ -238,7 +386,12 @@
       "operand_mapping": [
         "x"
       ],
-      "rules": []
+      "rules": [
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"result_equal_type" : "x"}
+      ]
     },
     {
       "opname": "Log2",
@@ -246,7 +399,11 @@
       "operand_mapping": [
         "x"
       ],
-      "rules": []
+      "rules": [
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "x"}
+      ]
     },
     {
       "opname": "Sqrt",
@@ -254,7 +411,11 @@
       "operand_mapping": [
         "x"
       ],
-      "rules": []
+      "rules": [
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "x"}
+      ]
     },
     {
       "opname": "InverseSqrt",
@@ -304,7 +465,14 @@
         "x",
         "y"
       ],
-      "rules": []
+      "rules": [        
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"type_constraint" : {"operand" : "y" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"base_type" : {"operand" : "y", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "x"},
+        {"result_equal_type" : "y"}
+      ]
     },
     {
       "opname": "UMin",
@@ -331,7 +499,14 @@
         "x",
         "y"
       ],
-      "rules": []
+      "rules": [        
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"type_constraint" : {"operand" : "y" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"base_type" : {"operand" : "y", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "x"},
+        {"result_equal_type" : "y"}
+      ]
     },
     {
       "opname": "UMax",
@@ -359,7 +534,18 @@
         "minVal",
         "maxVal"
       ],
-      "rules": []
+      "rules": [
+        
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"type_constraint" : {"operand" : "minVal" , "ty" : ["Scalar", "Vector"]}},
+        {"type_constraint" : {"operand" : "maxVal" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"base_type" : {"operand" : "minVal", "base_types" : ["FloatingPoint"]}},
+        {"base_type" : {"operand" : "maxVal", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "x"},
+        {"result_equal_type" : "minVal"},
+        {"result_equal_type" : "maxVal"}
+      ]
     },
     {
       "opname": "UClamp",
@@ -389,7 +575,17 @@
         "y",
         "a"
       ],
-      "rules": []
+      "rules": [        
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"type_constraint" : {"operand" : "y" , "ty" : ["Scalar", "Vector"]}},
+        {"type_constraint" : {"operand" : "a" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"base_type" : {"operand" : "y", "base_types" : ["FloatingPoint"]}},
+        {"base_type" : {"operand" : "a", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "x"},
+        {"result_equal_type" : "y"},
+        {"result_equal_type" : "a"}
+      ]
     },
     {
       "opname": "IMix",
@@ -558,7 +754,11 @@
       "operand_mapping": [
         "x"
       ],
-      "rules": []
+      "rules": [        
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "x"}
+      ]
     },
     {
       "opname": "Distance",
@@ -567,7 +767,14 @@
         "p0",
         "p1"
       ],
-      "rules": []
+      "rules": [
+        {"type_constraint" : {"operand" : "p0" , "ty" : ["Scalar", "Vector"]}},
+        {"type_constraint" : {"operand" : "p1" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "p0", "base_types" : ["FloatingPoint"]}},
+        {"base_type" : {"operand" : "p1", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "p0"},
+        {"result_equal_type" : "p1"}
+      ]
     },
     {
       "opname": "Cross",
@@ -576,7 +783,16 @@
         "x",
         "y"
       ],
-      "rules": []
+      "rules": [
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Vector"]}},
+        {"type_constraint" : {"operand" : "y" , "ty" : ["Vector"]}},
+        {"component_count" : {"operand" : "x", "allowed" : ["3"]}},
+        {"component_count" : {"operand" : "y", "allowed" : ["3"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"base_type" : {"operand" : "y", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "x"},
+        {"result_equal_type" : "y"}
+      ]
     },
     {
       "opname": "Normalize",
@@ -584,7 +800,11 @@
       "operand_mapping": [
         "x"
       ],
-      "rules": []
+      "rules": [        
+        {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "x"}
+      ]
     },
     {
       "opname": "FaceForward",

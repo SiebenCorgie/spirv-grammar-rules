@@ -1,9 +1,13 @@
 {
   "source_grammar": "spirv.core.grammar.json",
   "rule_types": {
-    "type_constrain": "The operand must be within the set of types as defined in 2.2.2.",
+    "type_constraint": "The operand must be within the set of types as defined in 2.2.2.",
     "base_type": "Constraints the base type of this operand to be in this set of types",
-    "result_equal_type": "Signals that an operand needs to have the same type as the result of that instruction"
+    "result_equal_type": "Signals that an operand needs to have the same type as the result of that instruction",
+    "component_count_equal" : "The number of components of a and b need to be equal.",
+    "component_width_equal" : "The component width of a and b need to be equal.",
+    "component_type_equal" : "The component type of both operands need to be equal",
+    "is_signed" : "signals the signedness of a type."
   },
   "instructions": [
     {
@@ -1179,7 +1183,14 @@
         "IdResult_1",
         "Operand"
       ],
-      "rules": []
+      "rules": [
+        {"type_constraint" : {"operand" : "IdResult_1" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "IdResult_1", "base_types" : ["Integer"]}},
+        {"type_constraint" : {"operand" : "Operand" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "Operand", "base_types" : ["Integer"]}},
+        {"component_count_equal" : {"a" : "IdResult_1", "b" : "Operand"}},
+        {"component_width_equal" : {"a" : "IdResult_1", "b" : "Operand"}}
+      ]
     },
     {
       "opname": "OpFNegate",
@@ -1189,7 +1200,11 @@
         "IdResult_1",
         "Operand"
       ],
-      "rules": []
+      "rules": [        
+        {"type_constraint" : {"operand" : "IdResult_1" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "IdResult_1", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "Operand"}
+      ]
     },
     {
       "opname": "OpIAdd",
@@ -1200,7 +1215,22 @@
         "Operand 1",
         "Operand 2"
       ],
-      "rules": []
+      "rules": [        
+        {"type_constraint" : {"operand" : "IdResult_1" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "IdResult_1", "base_types" : ["Integer"]}},
+        {"result_equal_type" : "Operand 1"},
+        {"result_equal_type" : "Operand 2"},
+
+        {"type_constraint" : {"operand" : "Operand 1", "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "Operand 1", "base_types" : ["Integer"]}},
+        {"component_count_equal" : {"a" : "IdResult_1", "b" : "Operand 1"}},
+        {"component_width_equal" : {"a" : "IdResult_1", "b" : "Operand 1"}},
+
+        {"type_constraint" : {"operand" : "Operand 2", "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "Operand 2", "base_types" : ["Integer"]}},
+        {"component_count_equal" : {"a" : "IdResult_1", "b" : "Operand 2"}},
+        {"component_width_equal" : {"a" : "IdResult_1", "b" : "Operand 2"}}
+      ]
     },
     {
       "opname": "OpFAdd",
@@ -1211,7 +1241,12 @@
         "Operand 1",
         "Operand 2"
       ],
-      "rules": []
+      "rules": [
+        {"type_constraint" : {"operand" : "IdResult_1" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "IdResult_1", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "Operand 1"},
+        {"result_equal_type" : "Operand 2"}
+      ]
     },
     {
       "opname": "OpISub",
@@ -1222,7 +1257,17 @@
         "Operand 1",
         "Operand 2"
       ],
-      "rules": []
+      "rules": [        
+        {"type_constraint" : {"operand" : "Operand 1", "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "Operand 1", "base_types" : ["Integer"]}},
+        {"component_count_equal" : {"a" : "IdResult_1", "b" : "Operand 1"}},
+        {"component_width_equal" : {"a" : "IdResult_1", "b" : "Operand 1"}},
+
+        {"type_constraint" : {"operand" : "Operand 2", "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "Operand 2", "base_types" : ["Integer"]}},
+        {"component_count_equal" : {"a" : "IdResult_1", "b" : "Operand 2"}},
+        {"component_width_equal" : {"a" : "IdResult_1", "b" : "Operand 2"}}
+      ]
     },
     {
       "opname": "OpFSub",
@@ -1233,7 +1278,12 @@
         "Operand 1",
         "Operand 2"
       ],
-      "rules": []
+      "rules": [        
+        {"type_constraint" : {"operand" : "IdResult_1" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "IdResult_1", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "Operand 1"},
+        {"result_equal_type" : "Operand 2"}
+      ]
     },
     {
       "opname": "OpIMul",
@@ -1244,7 +1294,17 @@
         "Operand 1",
         "Operand 2"
       ],
-      "rules": []
+      "rules": [
+        {"type_constraint" : {"operand" : "Operand 1", "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "Operand 1", "base_types" : ["Integer"]}},
+        {"component_count_equal" : {"a" : "IdResult_1", "b" : "Operand 1"}},
+        {"component_width_equal" : {"a" : "IdResult_1", "b" : "Operand 1"}},
+
+        {"type_constraint" : {"operand" : "Operand 2", "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "Operand 2", "base_types" : ["Integer"]}},
+        {"component_count_equal" : {"a" : "IdResult_1", "b" : "Operand 2"}},
+        {"component_width_equal" : {"a" : "IdResult_1", "b" : "Operand 2"}}        
+      ]
     },
     {
       "opname": "OpFMul",
@@ -1255,7 +1315,12 @@
         "Operand 1",
         "Operand 2"
       ],
-      "rules": []
+      "rules": [
+        {"type_constraint" : {"operand" : "IdResult_1" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "IdResult_1", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "Operand 1"},
+        {"result_equal_type" : "Operand 2"}
+      ]
     },
     {
       "opname": "OpUDiv",
@@ -1266,7 +1331,13 @@
         "Operand 1",
         "Operand 2"
       ],
-      "rules": []
+      "rules": [        
+        {"type_constraint" : {"operand" : "Operand 1", "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "Operand 1", "base_types" : ["Integer"]}},
+        {"is_signed" : {"operand" : "IdResult_1", "is_signed" : "false"}},
+        {"result_equal_type" : "Operand 1"},
+        {"result_equal_type" : "Operand 2"}
+      ]
     },
     {
       "opname": "OpSDiv",
@@ -1277,7 +1348,17 @@
         "Operand 1",
         "Operand 2"
       ],
-      "rules": []
+      "rules": [
+        {"type_constraint" : {"operand" : "Operand 1", "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "Operand 1", "base_types" : ["Integer"]}},
+        {"component_count_equal" : {"a" : "IdResult_1", "b" : "Operand 1"}},
+        {"component_width_equal" : {"a" : "IdResult_1", "b" : "Operand 1"}},
+
+        {"type_constraint" : {"operand" : "Operand 2", "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "Operand 2", "base_types" : ["Integer"]}},
+        {"component_count_equal" : {"a" : "IdResult_1", "b" : "Operand 2"}},
+        {"component_width_equal" : {"a" : "IdResult_1", "b" : "Operand 2"}}
+      ]
     },
     {
       "opname": "OpFDiv",
@@ -1288,7 +1369,12 @@
         "Operand 1",
         "Operand 2"
       ],
-      "rules": []
+      "rules": [        
+        {"type_constraint" : {"operand" : "IdResult_1" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "IdResult_1", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "Operand 1"},
+        {"result_equal_type" : "Operand 2"}
+      ]
     },
     {
       "opname": "OpUMod",
@@ -1299,7 +1385,14 @@
         "Operand 1",
         "Operand 2"
       ],
-      "rules": []
+      "rules": [
+          
+        {"type_constraint" : {"operand" : "IdResult_1" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "IdResult_1", "base_types" : ["Integer"]}},
+        {"is_signed" : {"operand" : "IdResult_1", "is_signed" : "false"}},
+        {"result_equal_type" : "Operand 1"},
+        {"result_equal_type" : "Operand 2"}
+      ]
     },
     {
       "opname": "OpSRem",
@@ -1310,7 +1403,22 @@
         "Operand 1",
         "Operand 2"
       ],
-      "rules": []
+      "rules": [                
+        {"type_constraint" : {"operand" : "IdResult_1" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "IdResult_1", "base_types" : ["Integer"]}},
+        {"type_constraint" : {"operand" : "Operand 1", "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "Operand 1", "base_types" : ["Integer"]}},
+        {"is_signed" : {"operand" : "Operand 1", "is_signed" : "false"}},
+        {"type_constraint" : {"operand" : "Operand 2", "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "Operand 2", "base_types" : ["Integer"]}},
+        {"is_signed" : {"operand" : "Operand 2", "is_signed" : "false"}},
+        {"result_equal_type" : "Operand 1"},
+        {"result_equal_type" : "Operand 2"},
+        {"component_count_equal" : {"a" : "IdResult_1", "b" : "Operand 1"}},
+        {"component_width_equal" : {"a" : "IdResult_1", "b" : "Operand 1"}},
+        {"component_count_equal" : {"a" : "IdResult_1", "b" : "Operand 2"}},
+        {"component_width_equal" : {"a" : "IdResult_1", "b" : "Operand 2"}}
+      ]
     },
     {
       "opname": "OpSMod",
@@ -1321,7 +1429,22 @@
         "Operand 1",
         "Operand 2"
       ],
-      "rules": []
+      "rules": [       
+        {"type_constraint" : {"operand" : "IdResult_1" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "IdResult_1", "base_types" : ["Integer"]}},
+        {"type_constraint" : {"operand" : "Operand 1", "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "Operand 1", "base_types" : ["Integer"]}},
+        {"is_signed" : {"operand" : "Operand 1", "is_signed" : "false"}},
+        {"type_constraint" : {"operand" : "Operand 2", "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "Operand 2", "base_types" : ["Integer"]}},
+        {"is_signed" : {"operand" : "Operand 2", "is_signed" : "false"}},
+        {"result_equal_type" : "Operand 1"},
+        {"result_equal_type" : "Operand 2"},
+        {"component_count_equal" : {"a" : "IdResult_1", "b" : "Operand 1"}},
+        {"component_width_equal" : {"a" : "IdResult_1", "b" : "Operand 1"}},
+        {"component_count_equal" : {"a" : "IdResult_1", "b" : "Operand 2"}},
+        {"component_width_equal" : {"a" : "IdResult_1", "b" : "Operand 2"}}
+      ]
     },
     {
       "opname": "OpFRem",
@@ -1332,7 +1455,12 @@
         "Operand 1",
         "Operand 2"
       ],
-      "rules": []
+      "rules": [        
+        {"type_constraint" : {"operand" : "IdResult_1" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "IdResult_1", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "Operand 1"},
+        {"result_equal_type" : "Operand 2"}
+      ]
     },
     {
       "opname": "OpFMod",
@@ -1343,7 +1471,12 @@
         "Operand 1",
         "Operand 2"
       ],
-      "rules": []
+      "rules": [
+        {"type_constraint" : {"operand" : "IdResult_1" , "ty" : ["Scalar", "Vector"]}},
+        {"base_type" : {"operand" : "IdResult_1", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "Operand 1"},
+        {"result_equal_type" : "Operand 2"}
+      ]
     },
     {
       "opname": "OpVectorTimesScalar",
@@ -1354,7 +1487,12 @@
         "Vector",
         "Scalar"
       ],
-      "rules": []
+      "rules": [        
+        {"type_constraint" : {"operand" : "IdResult_1" , "ty" : ["Vector"]}},
+        {"base_type" : {"operand" : "IdResult_1", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "Vector"},
+        {"component_type_equal" : {"a" : "IdResult_1", "b" : "Scalar"}}
+      ]
     },
     {
       "opname": "OpMatrixTimesScalar",
@@ -1365,7 +1503,12 @@
         "Matrix",
         "Scalar"
       ],
-      "rules": []
+      "rules": [        
+        {"type_constraint" : {"operand" : "IdResult_1" , "ty" : ["Matrix"]}},
+        {"base_type" : {"operand" : "IdResult_1", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "Matrix"},
+        {"component_type_equal" : {"a" : "IdResult_1", "b" : "Scalar"}}
+      ]
     },
     {
       "opname": "OpVectorTimesMatrix",
@@ -1376,7 +1519,15 @@
         "Vector",
         "Matrix"
       ],
-      "rules": []
+      "rules": [        
+        {"type_constraint" : {"operand" : "IdResult_1" , "ty" : ["Vector"]}},
+        {"base_type" : {"operand" : "IdResult_1", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "Matrix"},
+        {"component_type_equal" : {"a" : "IdResult_1", "b" : "Vector"}},
+        {"component_type_equal" : {"a" : "IdResult_1", "b" : "Matrix"}},
+        {"component_count_equal" : {"a" : "IdResult_1", "b" : "Matrix.width"}},
+        {"component_count_equal" : {"a" : "IdResult_1", "b" : "Vector"}}
+      ]
     },
     {
       "opname": "OpMatrixTimesVector",
