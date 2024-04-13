@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::{collections::HashMap, path::Path};
 
 use serde::{Deserialize, Serialize};
 
@@ -74,6 +74,11 @@ pub struct GrammarRules {
     pub instructions: Vec<Instruction>,
 }
 
+pub enum GrammarError {
+    FsError(std::io::Error),
+    ParseError(serde_json::Error),
+}
+
 impl GrammarRules {
     pub fn new(src_grammar_file: String) -> Self {
         let mut rule_types = HashMap::new();
@@ -98,5 +103,28 @@ impl GrammarRules {
             rule_types,
             instructions: Vec::new(),
         }
+    }
+
+    pub fn load_from_file<P: AsRef<Path>>(file: P) -> Result<Self, GrammarError> {
+        let file_string = std::fs::read_to_string(file).map_err(|e| GrammarError::FsError(e))?;
+        let loaded = serde_json::from_str(&file_string).map_err(|e| GrammarError::ParseError(e))?;
+        Ok(loaded)
+    }
+
+    ///Loads the core grammar rules from memory
+    pub fn load_core_grammar() -> Self {
+        //TODO: not sure if we _want_ to bundle the rules with the lib,
+        //      but right now thats pretty efficient :D
+        static CORE_GRAMMAR_RULES: &'static str =
+            include_str!("../../../rules/1.2/spirv.core.grammar-rules.json");
+
+        //should always parse
+        serde_json::from_str(CORE_GRAMMAR_RULES).unwrap()
+    }
+
+    pub fn load_glsl_std_450_grammar() -> Self {
+        static GLSL_GRAMMAR_RULES: &'static str =
+            include_str!("../../../rules/1.2/extinst.glsl.std.450.grammar-rules.json");
+        serde_json::from_str(GLSL_GRAMMAR_RULES).unwrap()
     }
 }
