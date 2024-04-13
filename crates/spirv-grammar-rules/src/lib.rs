@@ -75,12 +75,12 @@ pub enum Rule {
 
     ComponentWidth {
         operand: String,
-        allowed: Vec<usize>,
+        allowed: Vec<u32>,
     },
 
     ComponentCount {
         operand: String,
-        allowed: Vec<usize>,
+        allowed: Vec<u32>,
     },
 
     ///Unknown rule that needs to be parsed at runtime.

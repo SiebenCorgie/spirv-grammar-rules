@@ -145,7 +145,7 @@
       "rules": [
         {"type_constraint" : {"operand" : "degrees" , "ty" : ["Scalar", "Vector"]}},
         {"base_type" : {"operand" : "degrees", "base_types" : ["FloatingPoint"]}},
-        {"component_width" : {"operand" : "degrees", "allowed" : ["16", "32"]}},
+        {"component_width" : {"operand" : "degrees", "allowed" : [16, 32]}},
         {"result_equal_type" : "degrees"}
       ]
     },
@@ -158,7 +158,7 @@
       "rules": [        
         {"type_constraint" : {"operand" : "radians" , "ty" : ["Scalar", "Vector"]}},
         {"base_type" : {"operand" : "radians", "base_types" : ["FloatingPoint"]}},
-        {"component_width" : {"operand" : "radians", "allowed" : ["16", "32"]}},
+        {"component_width" : {"operand" : "radians", "allowed" : [16, 32]}},
         {"result_equal_type" : "radians"}
       ]
     },
@@ -171,7 +171,7 @@
       "rules": [        
         {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
         {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
-        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"component_width" : {"operand" : "x", "allowed" : [16, 32]}},
         {"result_equal_type" : "x"}
       ]
     },
@@ -184,7 +184,7 @@
       "rules": [        
         {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
         {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
-        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"component_width" : {"operand" : "x", "allowed" : [16, 32]}},
         {"result_equal_type" : "x"}
       ]
     },
@@ -197,7 +197,7 @@
       "rules": [
         {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
         {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
-        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"component_width" : {"operand" : "x", "allowed" : [16, 32]}},
         {"result_equal_type" : "x"}
       ]
     },
@@ -210,7 +210,7 @@
       "rules": [
         {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
         {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
-        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"component_width" : {"operand" : "x", "allowed" : [16, 32]}},
         {"result_equal_type" : "x"}
       ]
     },
@@ -223,7 +223,7 @@
       "rules": [
         {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
         {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
-        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"component_width" : {"operand" : "x", "allowed" : [16, 32]}},
         {"result_equal_type" : "x"}
       ]
     },
@@ -236,7 +236,7 @@
       "rules": [
         {"type_constraint" : {"operand" : "y_over_x" , "ty" : ["Scalar", "Vector"]}},
         {"base_type" : {"operand" : "y_over_x", "base_types" : ["FloatingPoint"]}},
-        {"component_width" : {"operand" : "y_over_x", "allowed" : ["16", "32"]}},
+        {"component_width" : {"operand" : "y_over_x", "allowed" : [16, 32]}},
         {"result_equal_type" : "y_over_x"}
       ]
     },
@@ -249,7 +249,7 @@
       "rules": [
         {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
         {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
-        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"component_width" : {"operand" : "x", "allowed" : [16, 32]}},
         {"result_equal_type" : "x"}
       ]
     },
@@ -262,7 +262,7 @@
       "rules": [        
         {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
         {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
-        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"component_width" : {"operand" : "x", "allowed" : [16, 32]}},
         {"result_equal_type" : "x"}
       ]
     },
@@ -275,7 +275,7 @@
       "rules": [
         {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
         {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
-        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"component_width" : {"operand" : "x", "allowed" : [16, 32]}},
         {"result_equal_type" : "x"}
       ]
     },
@@ -288,7 +288,7 @@
       "rules": [
         {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
         {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
-        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"component_width" : {"operand" : "x", "allowed" : [16, 32]}},
         {"result_equal_type" : "x"}
       ]
     },
@@ -301,7 +301,7 @@
       "rules": [
         {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
         {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
-        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"component_width" : {"operand" : "x", "allowed" : [16, 32]}},
         {"result_equal_type" : "x"}
       ]
     },
@@ -314,7 +314,7 @@
       "rules": [
         {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
         {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
-        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"component_width" : {"operand" : "x", "allowed" : [16, 32]}},
         {"result_equal_type" : "x"}
       ]
     },
@@ -330,8 +330,8 @@
         {"type_constraint" : {"operand" : "y" , "ty" : ["Scalar", "Vector"]}},
         {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
         {"base_type" : {"operand" : "y", "base_types" : ["FloatingPoint"]}},
-        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
-        {"component_width" : {"operand" : "y", "allowed" : ["16", "32"]}},
+        {"component_width" : {"operand" : "x", "allowed" : [16, 32]}},
+        {"component_width" : {"operand" : "y", "allowed" : [16, 32]}},
         {"result_equal_type" : "x"},
         {"result_equal_type" : "y"}
       ]
@@ -348,8 +348,8 @@
         {"type_constraint" : {"operand" : "y" , "ty" : ["Scalar", "Vector"]}},
         {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
         {"base_type" : {"operand" : "y", "base_types" : ["FloatingPoint"]}},
-        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
-        {"component_width" : {"operand" : "y", "allowed" : ["16", "32"]}},
+        {"component_width" : {"operand" : "x", "allowed" : [16, 32]}},
+        {"component_width" : {"operand" : "y", "allowed" : [16, 32]}},
         {"result_equal_type" : "x"},
         {"result_equal_type" : "y"}
       ]
@@ -363,7 +363,7 @@
       "rules": [
         {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
         {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
-        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"component_width" : {"operand" : "x", "allowed" : [16, 32]}},
         {"result_equal_type" : "x"}
       ]
     },
@@ -376,7 +376,7 @@
       "rules": [        
         {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
         {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
-        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"component_width" : {"operand" : "x", "allowed" : [16, 32]}},
         {"result_equal_type" : "x"}
       ]
     },
@@ -389,7 +389,7 @@
       "rules": [
         {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
         {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
-        {"component_width" : {"operand" : "x", "allowed" : ["16", "32"]}},
+        {"component_width" : {"operand" : "x", "allowed" : [16, 32]}},
         {"result_equal_type" : "x"}
       ]
     },
@@ -786,8 +786,8 @@
       "rules": [
         {"type_constraint" : {"operand" : "x" , "ty" : ["Vector"]}},
         {"type_constraint" : {"operand" : "y" , "ty" : ["Vector"]}},
-        {"component_count" : {"operand" : "x", "allowed" : ["3"]}},
-        {"component_count" : {"operand" : "y", "allowed" : ["3"]}},
+        {"component_count" : {"operand" : "x", "allowed" : [3]}},
+        {"component_count" : {"operand" : "y", "allowed" : [3]}},
         {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
         {"base_type" : {"operand" : "y", "base_types" : ["FloatingPoint"]}},
         {"result_equal_type" : "x"},
