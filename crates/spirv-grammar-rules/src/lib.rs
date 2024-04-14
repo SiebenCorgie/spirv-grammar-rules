@@ -4,12 +4,11 @@ use serde::{Deserialize, Serialize};
 
 pub use serde;
 pub use serde_json;
-use serde_json::Value;
 
 ///Types as defined in 2.2.2 of the unified spec:
 ///<https://registry.khronos.org/SPIR-V/specs/unified1/SPIRV.html#_types>
 //TODO: This should probably be split since a lot of those are overlaping.
-#[derive(Deserialize, Serialize, Debug)]
+#[derive(Deserialize, Serialize, Debug, PartialEq, Eq, Clone, Copy)]
 pub enum Type {
     Boolean,
     Integer,
@@ -33,7 +32,7 @@ pub enum Type {
     VariablePointer,
 }
 
-#[derive(Deserialize, Serialize, Debug)]
+#[derive(Deserialize, Serialize, Debug, PartialEq, Eq, Clone)]
 #[serde(rename_all = "snake_case")]
 pub enum Rule {
     ///Declares that `operand` needs to
@@ -88,7 +87,7 @@ pub enum Rule {
     Unknown(serde_json::Value),
 }
 
-#[derive(Deserialize, Serialize, Debug)]
+#[derive(Deserialize, Serialize, Debug, PartialEq, Eq, Clone)]
 pub struct Instruction {
     pub opname: String,
     ///The opcode of that instruction in the [source_grammar](GrammarRules::source_grammar).
@@ -101,7 +100,7 @@ pub struct Instruction {
     pub rules: Vec<Rule>,
 }
 
-#[derive(Deserialize, Serialize, Debug)]
+#[derive(Deserialize, Serialize, Debug, Clone)]
 pub struct GrammarRules {
     ///Name of the grammar file those rules are made for.
     pub source_grammar: String,
