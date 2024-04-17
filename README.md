@@ -39,4 +39,4 @@ If you add rules to an operation that has no rules _at-all_ at the moment, pleas
 
 ### License
 
-None(?): I hope there might be an official version of this, or this will be patched into the official SPIR-V spec at some point.
+MIT / Apache-2.0 dual license

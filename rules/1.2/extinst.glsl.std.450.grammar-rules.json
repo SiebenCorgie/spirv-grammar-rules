@@ -757,7 +757,8 @@
       "rules": [        
         {"type_constraint" : {"operand" : "x" , "ty" : ["Scalar", "Vector"]}},
         {"base_type" : {"operand" : "x", "base_types" : ["FloatingPoint"]}},
-        {"result_equal_type" : "x"}
+        {"type_constraint" : {"operand" : "Result", "ty" : ["Scalar"]}},
+        {"base_type" : {"operand" : "Result", "base_types" : ["FloatingPoint"]}}
       ]
     },
     {
