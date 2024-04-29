@@ -1522,10 +1522,9 @@
       "rules": [        
         {"type_constraint" : {"operand" : "IdResult_1" , "ty" : ["Vector"]}},
         {"base_type" : {"operand" : "IdResult_1", "base_types" : ["FloatingPoint"]}},
-        {"result_equal_type" : "Matrix"},
+        {"result_equal_type" : "Vector"},
         {"component_type_equal" : {"a" : "IdResult_1", "b" : "Vector"}},
         {"component_type_equal" : {"a" : "IdResult_1", "b" : "Matrix"}},
-        {"component_count_equal" : {"a" : "IdResult_1", "b" : "Matrix.width"}},
         {"component_count_equal" : {"a" : "IdResult_1", "b" : "Vector"}}
       ]
     },
