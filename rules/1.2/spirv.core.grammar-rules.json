@@ -1569,7 +1569,12 @@
         "Vector 1",
         "Vector 2"
       ],
-      "rules": []
+      "rules": [
+        {"type_constraint" : {"operand" : "IdResult_1" , "ty" : ["Vector"]}},
+        {"base_type" : {"operand" : "IdResult_1", "base_types" : ["FloatingPoint"]}},
+        {"result_equal_type" : "Vector 1"},
+        {"result_equal_type" : "Vector 2"}
+      ]
     },
     {
       "opname": "OpIAddCarry",
