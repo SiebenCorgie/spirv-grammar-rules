@@ -1570,10 +1570,14 @@
         "Vector 2"
       ],
       "rules": [
-        {"type_constraint" : {"operand" : "IdResult_1" , "ty" : ["Vector"]}},
+        {"type_constraint" : {"operand" : "IdResult_1" , "ty" : ["Scalar"]}},
         {"base_type" : {"operand" : "IdResult_1", "base_types" : ["FloatingPoint"]}},
-        {"result_equal_type" : "Vector 1"},
-        {"result_equal_type" : "Vector 2"}
+        {"base_type" : {"operand" : "Vector 1", "base_types" : ["FloatingPoint"]}},
+        {"base_type" : {"operand" : "Vector 2", "base_types" : ["FloatingPoint"]}},
+        {"type_constraint" : {"operand" : "Vector 1" , "ty" : ["Vector"]}},
+        {"type_constraint" : {"operand" : "Vector 2" , "ty" : ["Vector"]}},
+        {"component_type_equal" : {"a" : "Vector 1", "b" : "Vector 2"}},
+        {"component_count_equal" : {"a" : "Vector 1", "b" : "Vector 2"}}
       ]
     },
     {
